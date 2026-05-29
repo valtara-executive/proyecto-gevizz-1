@@ -5,88 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Glamour & Confort</title>
     
+    <!-- Fuentes Premium: Playfair para elegancia, Montserrat para legibilidad moderna -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- Hoja de estilos -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+    <!-- Capa decorativa para el fondo de madera que haremos en CSS -->
+    <div class="wood-background-overlay"></div>
+
+    <!-- Barra Superior -->
     <header class="top-bar">
-        <div class="logo-mini">
+        <div class="logo-container">
+            <!-- Espacio para un isotipo o icono elegante -->
+            <span class="logo-accent">✧</span>
             <span class="logo-text">STUDIO GLAMOUR</span>
         </div>
         <div class="top-actions">
-            <a href="https://wa.me/523348572070" class="action-btn active-green">💬</a>
+            <!-- Botón de contacto directo -->
+            <a href="https://wa.me/523348572070" class="action-btn" aria-label="Contacto WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+            </a>
         </div>
     </header>
 
+    <!-- Contenedor Principal de la Aplicación -->
     <main class="app-content">
         
+        <!-- ==========================================
+             MÓDULO 0: INICIO (Preparado para CMS)
+             ========================================== -->
         <section id="Inicio" class="page-section active">
+            
+            <!-- Hero Banner: Bienvenida -->
             <div class="hero-container">
-                <h1 class="hero-title">Estética Integral</h1>
-                <h2 class="hero-subtitle">BELLEZA & BIENESTAR</h2>
-                <p class="hero-text">
+                <div class="hero-decoration"></div>
+                <!-- Estos IDs (home-title, home-subtitle, etc.) servirán para el Excel después -->
+                <h1 id="home-title" class="hero-title">Estética Integral</h1>
+                <h2 id="home-subtitle" class="hero-subtitle">BELLEZA & BIENESTAR</h2>
+                <p id="home-desc" class="hero-text">
                     Descubre un espacio diseñado para tu renovación. Combinamos técnicas vanguardistas y atención al detalle para resaltar tu mejor versión en un ambiente de total relajación.
                 </p>
             </div>
 
+            <!-- Tarjeta de Promoción / Destacado -->
             <div class="promo-card">
-                <span class="promo-badge">NUESTRA FILOSOFÍA</span>
-                <h3 class="promo-title">El arte del cuidado personal.</h3>
-                <p class="promo-desc">
-                    Experimenta servicios de alta categoría donde cada detalle está pensado en tu confort. Desde diseños de uñas impecables hasta masoterapia profunda.
-                </p>
+                <div class="promo-inner">
+                    <span id="promo-badge" class="promo-badge">NUESTRA FILOSOFÍA</span>
+                    <h3 id="promo-title" class="promo-title">El arte del cuidado personal.</h3>
+                    <p id="promo-desc" class="promo-desc">
+                        Experimenta servicios de alta categoría donde cada detalle está pensado en tu confort. Desde diseños de uñas impecables hasta masoterapia clínica profunda.
+                    </p>
+                    <div class="promo-action">
+                        <span class="gold-line"></span>
+                        <span class="gold-diamond">♦</span>
+                        <span class="gold-line"></span>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- ==========================================
+             MÓDULO 1: BARBERÍA
+             ========================================== -->
         <section id="Barbería" class="page-section">
             <div class="section-header">
+                <span class="section-eyebrow">Studio Glamour</span>
                 <h2>Barbería Executive</h2>
-                <p>Estilo y precisión para el caballero.</p>
+                <p>Estilo, precisión y vanguardia para el caballero.</p>
             </div>
+            <!-- Contenedor dinámico -->
             <div id="grid-Barbería" class="menu-grid"></div>
         </section>
 
+        <!-- ==========================================
+             MÓDULO 2: MANICURE
+             ========================================== -->
         <section id="Manicure" class="page-section">
             <div class="section-header">
+                <span class="section-eyebrow">Studio Glamour</span>
                 <h2>Nail Art & Cuidado</h2>
-                <p>Arte y detalle en cada diseño.</p>
+                <p>Arte y detalle absoluto en cada diseño.</p>
             </div>
+            <!-- Contenedor dinámico -->
             <div id="grid-Manicure" class="menu-grid"></div>
         </section>
 
+        <!-- ==========================================
+             MÓDULO 3: SPA
+             ========================================== -->
         <section id="Spa" class="page-section">
             <div class="section-header">
+                <span class="section-eyebrow">Studio Glamour</span>
                 <h2>Spa & Terapias</h2>
-                <p>Desconecta y renueva tu energía.</p>
+                <p>Desconecta del mundo y renueva tu energía vital.</p>
             </div>
+            <!-- Contenedor dinámico -->
             <div id="grid-Spa" class="menu-grid"></div>
         </section>
 
     </main>
 
+    <!-- ==========================================
+         BARRA DE NAVEGACIÓN INFERIOR
+         ========================================== -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="navigateTo('Inicio')">
-            <span class="icon">🏠</span>
+            <!-- Iconos SVG integrados para un look más profesional que los emojis -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
             <span class="label">INICIO</span>
         </button>
+        
         <button class="nav-item" onclick="navigateTo('Barbería')">
-            <span class="icon">💈</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="3"></circle>
+                <circle cx="6" cy="18" r="3"></circle>
+                <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+            </svg>
             <span class="label">BARBERÍA</span>
         </button>
+        
         <button class="nav-item" onclick="navigateTo('Manicure')">
-            <span class="icon">💅</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
             <span class="label">MANICURA</span>
         </button>
+        
         <button class="nav-item" onclick="navigateTo('Spa')">
-            <span class="icon">🌿</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+            </svg>
             <span class="label">SPA</span>
         </button>
     </nav>
 
+    <!-- Script de ruteo -->
     <script src="js/router.js"></script>
 </body>
 </html>
