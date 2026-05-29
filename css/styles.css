@@ -1,184 +1,206 @@
-/* 1. Variables y Paleta de Colores Refinada */
+/* --- Variables: Paleta Madera Oscura, Oro y Beige --- */
 :root {
-    --blanco: #FFFFFF;
-    --beige-claro: #F8F5F2; /* Un fondo más elegante y cremoso */
-    --beige-medio: #EAE0D5;
-    --dorado: #D4AF37;
-    --dorado-oscuro: #B8962E;
-    --madera-suave: #8B5A2B;
-    --madera-oscuro: #2C1E16;
-    --texto-oscuro: #1A1A1A;
-    --fuente-titulos: 'Playfair Display', serif;
-    --fuente-textos: 'Montserrat', sans-serif;
+    --bg-dark: #0A0705;          /* Fondo casi negro, tono madera profunda */
+    --card-bg: rgba(26, 18, 14, 0.6); /* Cristal esmerilado tono madera */
+    --gold: #D4AF37;             /* Dorado elegante */
+    --gold-muted: #967A26;       /* Dorado apagado para bordes */
+    --text-white: #FFFFFF;
+    --text-beige: #E8E0D5;       /* Beige para textos largos */
+    --text-dim: #A69B91;         /* Beige apagado para navegación inactiva */
+    
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; /* Quita el brillo azul feo en móviles al tocar */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: var(--fuente-textos);
-    background-color: var(--beige-claro);
-    color: var(--texto-oscuro);
-    padding-bottom: 90px; /* Espacio para que la barra flotante no tape contenido */
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    /* Halos de luz simulando el estilo de la captura, pero en tonos dorados/madera */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 60%, rgba(139, 90, 43, 0.08) 0%, transparent 45%);
+    background-attachment: fixed;
+    color: var(--text-beige);
+    padding-bottom: 85px; /* Espacio para la barra inferior */
 }
 
-/* 2. Hero Section Inmersivo (El gran impacto visual) */
-.hero-section {
-    position: relative;
-    height: 40vh; /* Ocupa el 40% de la pantalla */
-    min-height: 250px;
-    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Capa oscura elegante para que el texto resalte */
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to bottom, rgba(44, 30, 22, 0.6), rgba(44, 30, 22, 0.9));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    color: var(--blanco);
-    padding: 0 20px;
-}
-
-.hero-content h1 {
-    font-family: var(--fuente-titulos);
-    font-size: 2.2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--dorado);
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 0.95rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-}
-
-/* 3. Barra de Navegación Flotante Inferior (Estilo App Nativa) */
-.app-nav {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 400px;
-    background-color: var(--blanco);
+/* --- Barra Superior --- */
+.top-bar {
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-}
-
-.nav-btn {
-    background: transparent;
-    border: none;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: var(--madera-oscuro);
-    opacity: 0.5;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 30%;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(10, 7, 5, 0.9) 0%, transparent 100%);
 }
 
-.nav-btn .icon {
-    font-size: 1.5rem;
-    margin-bottom: 3px;
-    transition: transform 0.3s ease;
+.logo-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.nav-btn .text {
-    font-size: 0.7rem;
-    font-weight: 600;
-}
+.logo-icon { font-size: 1.2rem; filter: sepia(1) hue-rotate(10deg) saturate(2); }
+.logo-text { font-family: var(--font-title); font-size: 0.9rem; color: var(--gold); letter-spacing: 1px; }
 
-.nav-btn.active {
-    opacity: 1;
-    color: var(--dorado-oscuro);
+.top-actions { display: flex; gap: 15px; }
+.action-btn {
+    text-decoration: none;
+    font-size: 1.2rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50%;
+    width: 35px; height: 35px;
+    display: flex; align-items: center; justify-content: center;
 }
+.active-green { border-color: #25D366; }
 
-.nav-btn.active .icon {
-    transform: translateY(-3px); /* Pequeño salto del icono activo */
-}
-
-/* 4. Contenedor de Secciones */
-.main-content {
-    padding: 2rem 1.5rem;
-    max-width: 900px;
+/* --- Contenedor y Módulos --- */
+.app-content {
+    padding: 80px 20px 20px 20px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-.page-section {
-    display: none;
-}
-
+.page-section { display: none; }
 .page-section.active {
     display: block;
-    animation: fadeInSlide 0.5s ease-out forwards;
+    animation: fadeIn 0.6s ease-out;
 }
 
-.section-header {
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Portada / Inicio --- */
+.hero-container {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
 }
 
-.section-header h2 {
-    font-family: var(--fuente-titulos);
-    color: var(--madera-oscuro);
-    font-size: 1.8rem;
+.hero-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    filter: sepia(1) saturate(3) hue-rotate(10deg);
 }
 
-.section-header p {
-    color: var(--madera-suave);
+.hero-title {
+    font-family: var(--font-title);
+    color: var(--text-white);
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text {
     font-size: 0.9rem;
-    margin-top: 5px;
+    line-height: 1.6;
+    color: var(--text-beige);
+    font-weight: 300;
+    padding: 0 10px;
 }
 
-/* 5. Tarjetas Premium */
+/* Tarjeta de Promoción Cristalina */
+.promo-card {
+    background: linear-gradient(180deg, rgba(30, 22, 18, 0.8) 0%, rgba(15, 10, 8, 0.9) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px); /* Efecto cristal */
+}
+
+.promo-badge {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.promo-title {
+    font-family: var(--font-title);
+    color: var(--text-white);
+    font-size: 2rem;
+    margin: 1.5rem 0 1rem 0;
+    line-height: 1.1;
+}
+
+.promo-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-beige);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.promo-gift {
+    background: rgba(212, 175, 55, 0.08);
+    padding: 10px;
+    border-radius: 12px;
+    color: var(--text-white);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* --- Títulos de Secciones --- */
+.section-header { text-align: center; margin-bottom: 2rem; }
+.section-header h2 {
+    font-family: var(--font-title);
+    color: var(--text-white);
+    font-size: 2rem;
+    border-bottom: 1px solid var(--gold-muted);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* --- Tarjetas del Menú Dinámico --- */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .menu-card {
-    background: var(--blanco);
-    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
 }
 
 .menu-img {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
+    opacity: 0.85; /* Da un look más oscuro a las fotos */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .menu-info {
@@ -189,17 +211,18 @@ body {
 }
 
 .menu-title {
-    font-family: var(--fuente-titulos);
-    font-size: 1.3rem;
-    color: var(--madera-oscuro);
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    color: var(--gold);
     margin-bottom: 0.5rem;
 }
 
 .menu-desc {
     font-size: 0.85rem;
-    color: #666;
+    color: var(--text-beige);
     margin-bottom: 1.5rem;
-    line-height: 1.5;
+    line-height: 1.4;
+    font-weight: 300;
 }
 
 .menu-meta {
@@ -207,48 +230,65 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    border-top: 1px solid var(--beige-medio);
-    padding-top: 1rem;
 }
 
 .menu-price {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--dorado-oscuro);
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--text-white);
 }
 
 .menu-time {
     font-size: 0.75rem;
-    background-color: var(--beige-medio);
-    color: var(--madera-oscuro);
+    background-color: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold);
     padding: 4px 10px;
     border-radius: 12px;
-    font-weight: 600;
 }
 
-/* 6. Botón de WhatsApp Premium */
 .btn-whatsapp {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: var(--blanco);
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
     text-align: center;
-    padding: 0.9rem;
-    border-radius: 12px;
+    padding: 0.8rem;
+    border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-top: auto;
-    transition: opacity 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-whatsapp:active {
-    opacity: 0.8;
+    background: var(--gold);
+    color: var(--bg-dark);
 }
 
-/* Animaciones */
-@keyframes fadeInSlide {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+/* --- Barra de Navegación Inferior --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background-color: rgba(10, 7, 5, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 5px 20px 5px; /* Padding extra abajo por los iPhone */
+    z-index: 1000;
 }
+
+.nav-item {
+    background: none; border: none;
+    display: flex; flex-direction: column; align-items: center;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item .icon { font-size: 1.3rem; margin-bottom: 4px; filter: grayscale(1); opacity: 0.6; }
+.nav-item .label { font-size: 0.65rem; font-weight: 600; letter-spacing: 1px; }
+
+.nav-item.active { color: var(--gold); }
+.nav-item.active .icon { filter: none; opacity: 1; filter: sepia(1) saturate(3) hue-rotate(10deg); }
