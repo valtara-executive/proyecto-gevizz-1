@@ -1,0 +1,201 @@
+/* 1. Variables de Colorimetría (Blancos, Dorados, Beiges y Maderas) */
+:root {
+    --blanco: #FFFFFF;
+    --beige-claro: #FDFBF7;
+    --beige-medio: #F5EFEB;
+    --dorado: #D4AF37;
+    --dorado-oscuro: #AA841B;
+    --madera-suave: #A07855;
+    --madera-oscuro: #4A3B32;
+    --texto-oscuro: #2C2520;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Reseteo Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--beige-claro);
+    color: var(--texto-oscuro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 3. Encabezado de la App */
+.app-header {
+    background-color: var(--madera-oscuro);
+    color: var(--blanco);
+    padding: 1.2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--dorado);
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* 4. Menú de Navegación (Sticky/Fijo en la parte superior) */
+.app-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--blanco);
+    border-bottom: 1px solid var(--beige-medio);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 1rem 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--madera-suave);
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-btn.active {
+    color: var(--dorado-oscuro);
+    border-bottom: 3px solid var(--dorado);
+    background-color: var(--beige-medio);
+}
+
+/* 5. Contenedor Principal y Módulos */
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.page-section {
+    display: none; /* Oculta todas las secciones por defecto */
+}
+
+.page-section.active {
+    display: block; /* Solo muestra la sección activa */
+    animation: fadeIn 0.4s ease;
+}
+
+.page-section h2 {
+    color: var(--dorado-oscuro);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.page-section p {
+    color: var(--madera-suave);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* 6. Diseño de las Tarjetas de Servicios (Grid) */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-card {
+    background: var(--blanco);
+    border: 1px solid var(--beige-medio);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.menu-card:active {
+    transform: scale(0.98);
+}
+
+.menu-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: var(--beige-medio);
+    border-bottom: 2px solid var(--dorado);
+}
+
+.menu-info {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.menu-title {
+    font-size: 1.2rem;
+    color: var(--madera-oscuro);
+    margin-bottom: 0.3rem;
+}
+
+.menu-desc {
+    font-size: 0.9rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.menu-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.menu-price {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--dorado-oscuro);
+}
+
+.menu-time {
+    font-size: 0.8rem;
+    background-color: var(--beige-medio);
+    color: var(--madera-oscuro);
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* 7. Botón de WhatsApp */
+.btn-whatsapp {
+    display: block;
+    background-color: #25D366;
+    color: var(--blanco);
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+    transition: background 0.2s;
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+}
+
+/* Animación de entrada para los módulos */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
