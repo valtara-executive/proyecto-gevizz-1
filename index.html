@@ -5,65 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Glamour & Confort</title>
     
+    <!-- Fuentes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <header class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Studio Glamour & Confort</h1>
-            <p>El equilibrio perfecto entre estilo, belleza y relajación.</p>
+    <!-- Barra Superior estilo App -->
+    <header class="top-bar">
+        <div class="logo-mini">
+            <span class="logo-icon">🌿</span>
+            <span class="logo-text">STUDIO GLAMOUR</span>
+        </div>
+        <div class="top-actions">
+            <a href="#" class="action-btn">🤖</a>
+            <a href="https://wa.me/523348572070" class="action-btn active-green">💬</a>
         </div>
     </header>
 
-    <main class="main-content">
+    <!-- Contenedor Principal -->
+    <main class="app-content">
         
-        <section id="Barbería" class="page-section active">
+        <!-- Módulo 0: INICIO (Réplica de tu captura) -->
+        <section id="Inicio" class="page-section active">
+            <div class="hero-container">
+                <div class="hero-icon">✨</div>
+                <h1 class="hero-title">STUDIO GLAMOUR</h1>
+                <h2 class="hero-subtitle">ESTÉTICA INTEGRAL & SPA</h2>
+                <p class="hero-text">
+                    La tarde avanza. No permitas que el estrés de la rutina te limite. En nuestro santuario, realzamos tu belleza y liberamos la tensión para que termines tu día con total ligereza.
+                </p>
+            </div>
+
+            <div class="promo-card">
+                <span class="promo-badge">PROMOCIONES EXCLUSIVAS</span>
+                <h3 class="promo-title">Tu cuerpo e imagen merecen descanso.</h3>
+                <p class="promo-desc">
+                    Experiencias terapéuticas y estéticas premium con aromaterapia incluida, aparatología de punta y atención personalizada.
+                </p>
+                <div class="promo-gift">
+                    <span>🎁 15% de cortesía en tu primera cita</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo 1: BARBERÍA -->
+        <section id="Barbería" class="page-section">
             <div class="section-header">
-                <h2>Barbería Premium</h2>
-                <p>Estilo clásico y contemporáneo para el caballero moderno.</p>
+                <h2>Barbería Executive</h2>
             </div>
             <div id="grid-Barbería" class="menu-grid"></div>
         </section>
 
+        <!-- Módulo 2: MANICURE -->
         <section id="Manicure" class="page-section">
             <div class="section-header">
-                <h2>Diseño de Uñas</h2>
-                <p>Arte, precisión y cuidado en cada detalle de tus manos.</p>
+                <h2>Nail Art & Cuidado</h2>
             </div>
             <div id="grid-Manicure" class="menu-grid"></div>
         </section>
 
+        <!-- Módulo 3: SPA -->
         <section id="Spa" class="page-section">
             <div class="section-header">
                 <h2>Spa & Terapias</h2>
-                <p>Desconecta del mundo y renueva tu energía vital.</p>
             </div>
             <div id="grid-Spa" class="menu-grid"></div>
         </section>
 
     </main>
 
-    <nav class="app-nav">
-        <button class="nav-btn active" onclick="navigateTo('Barbería')">
+    <!-- Barra de Navegación Inferior Estilo App -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="navigateTo('Inicio')">
+            <span class="icon">🏠</span>
+            <span class="label">INICIO</span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('Barbería')">
             <span class="icon">💈</span>
-            <span class="text">Barbería</span>
+            <span class="label">BARBERÍA</span>
         </button>
-        <button class="nav-btn" onclick="navigateTo('Manicure')">
+        <button class="nav-item" onclick="navigateTo('Manicure')">
             <span class="icon">💅</span>
-            <span class="text">Manicure</span>
+            <span class="label">MANICURA</span>
         </button>
-        <button class="nav-btn" onclick="navigateTo('Spa')">
+        <button class="nav-item" onclick="navigateTo('Spa')">
             <span class="icon">🌿</span>
-            <span class="text">Spa</span>
+            <span class="label">SPA</span>
         </button>
     </nav>
 
+    <!-- El archivo JS sigue siendo el mismo, no necesitas cambiarlo -->
     <script src="js/router.js"></script>
 </body>
 </html>
