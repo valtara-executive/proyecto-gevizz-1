@@ -2,55 +2,68 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Glamour & Confort</title>
-    <!-- Enlace a nuestro futuro archivo de colores y diseño -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Encabezado de la App -->
-    <header class="app-header">
-        <h1>Studio Glamour & Confort</h1>
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Studio Glamour & Confort</h1>
+            <p>El equilibrio perfecto entre estilo, belleza y relajación.</p>
+        </div>
     </header>
 
-    <!-- Menú de Navegación tipo App Web (Switch) -->
-    <nav class="app-nav">
-        <button class="nav-btn active" onclick="navigateTo('Barbería')">Barbería</button>
-        <button class="nav-btn" onclick="navigateTo('Manicure')">Manicurismo</button>
-        <button class="nav-btn" onclick="navigateTo('Spa')">Spa & Aparatología</button>
-    </nav>
-
-    <!-- Contenedor Principal -->
     <main class="main-content">
         
-        <!-- Módulo 1: Barbería -->
         <section id="Barbería" class="page-section active">
-            <h2>Servicios de Barbería</h2>
-            <p>Cortes clásicos, modernos y cuidado especializado.</p>
-            <!-- Aquí el código inyectará las tarjetas de barbería -->
+            <div class="section-header">
+                <h2>Barbería Premium</h2>
+                <p>Estilo clásico y contemporáneo para el caballero moderno.</p>
+            </div>
             <div id="grid-Barbería" class="menu-grid"></div>
         </section>
 
-        <!-- Módulo 2: Manicurismo -->
         <section id="Manicure" class="page-section">
-            <h2>Diseño y Cuidado de Uñas</h2>
-            <p>Esmaltados, gelish y extensiones con acabados profesionales.</p>
-            <!-- Aquí el código inyectará las tarjetas de uñas -->
+            <div class="section-header">
+                <h2>Diseño de Uñas</h2>
+                <p>Arte, precisión y cuidado en cada detalle de tus manos.</p>
+            </div>
             <div id="grid-Manicure" class="menu-grid"></div>
         </section>
 
-        <!-- Módulo 3: Spa & Aparatología -->
         <section id="Spa" class="page-section">
-            <h2>Spa y Tratamientos</h2>
-            <p>Tratamientos de última generación para tu bienestar.</p>
-            <!-- Aquí el código inyectará las tarjetas de spa -->
+            <div class="section-header">
+                <h2>Spa & Terapias</h2>
+                <p>Desconecta del mundo y renueva tu energía vital.</p>
+            </div>
             <div id="grid-Spa" class="menu-grid"></div>
         </section>
 
     </main>
 
-    <!-- Enlace a nuestro futuro archivo de lógica y base de datos -->
+    <nav class="app-nav">
+        <button class="nav-btn active" onclick="navigateTo('Barbería')">
+            <span class="icon">💈</span>
+            <span class="text">Barbería</span>
+        </button>
+        <button class="nav-btn" onclick="navigateTo('Manicure')">
+            <span class="icon">💅</span>
+            <span class="text">Manicure</span>
+        </button>
+        <button class="nav-btn" onclick="navigateTo('Spa')">
+            <span class="icon">🌿</span>
+            <span class="text">Spa</span>
+        </button>
+    </nav>
+
     <script src="js/router.js"></script>
 </body>
 </html>
