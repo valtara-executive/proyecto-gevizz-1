@@ -17,15 +17,24 @@
 
     <div class="wood-glass-background"></div>
 
-    <header class="top-bar">
-        <a href="#" class="logo" onclick="navigateTo('Inicio')">
-            <i class="fa-solid fa-leaf"></i> 
-            Studio <span>Glamour</span>
-        </a>
-        <div class="top-actions">
-            <a href="https://wa.me/523348572070" class="btn-nav-outline" aria-label="Contacto WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i> Contacto
+    <header class="luxury-header">
+        <div class="header-container">
+            <a href="#" class="logo" onclick="navigateTo('Inicio')">
+                <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
             </a>
+            
+            <nav class="elegant-nav">
+                <button class="nav-link active" onclick="navigateTo('Inicio')">Inicio</button>
+                <button class="nav-link" onclick="navigateTo('Barbería')">Barbería</button>
+                <button class="nav-link" onclick="navigateTo('Manicure')">Manicura</button>
+                <button class="nav-link" onclick="navigateTo('Spa')">Spa & Terapias</button>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/523348572070" class="btn-contact-gold">
+                    <i class="fa-brands fa-whatsapp"></i> Reservar
+                </a>
+            </div>
         </div>
     </header>
 
@@ -34,46 +43,60 @@
         <section id="Inicio" class="page-section active">
             
             <div class="hero-container">
-                <div class="hero-badge" id="home-badge">Bienvenidos al confort</div>
                 <h1 id="home-title" class="hero-title">Estética Integral & <br><span>Relajación Absoluta</span></h1>
                 <p id="home-desc" class="hero-text">
                     Descubre un santuario diseñado para tu renovación. Combinamos técnicas vanguardistas y atención al detalle para resaltar tu mejor versión.
                 </p>
             </div>
 
-            <div class="pyramid-nav-container">
-                <div class="pyramid-row top-tier">
-                    <button class="pyramid-btn premium-btn" onclick="navigateTo('Spa')">
-                        <div class="btn-icon"><i class="fa-solid fa-spa"></i></div>
-                        <span class="btn-label">Spa & Terapias</span>
-                    </button>
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <h3 class="carousel-title">Experiencias Destacadas</h3>
+                    <p class="carousel-subtitle">Desliza para explorar</p>
                 </div>
-                <div class="pyramid-row bottom-tier">
-                    <button class="pyramid-btn" onclick="navigateTo('Barbería')">
-                        <div class="btn-icon"><i class="fa-solid fa-scissors"></i></div>
-                        <span class="btn-label">Barbería</span>
-                    </button>
-                    <button class="pyramid-btn" onclick="navigateTo('Manicure')">
-                        <div class="btn-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
-                        <span class="btn-label">Manicura</span>
-                    </button>
+                
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide">
+                            <div class="slide-card" onclick="navigateTo('Spa')">
+                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Masoterapia Clínica" class="slide-img">
+                                <div class="slide-overlay">
+                                    <span class="slide-category">Spa Especializado</span>
+                                    <h4 class="slide-name">Masoterapia Clínica</h4>
+                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="carousel-slide">
+                            <div class="slide-card" onclick="navigateTo('Manicure')">
+                                <img src="https://images.unsplash.com/photo-1604654894610-df490651e56c?auto=format&fit=crop&w=800&q=80" alt="Manicura Premium" class="slide-img">
+                                <div class="slide-overlay">
+                                    <span class="slide-category">Nail Art</span>
+                                    <h4 class="slide-name">Manicura Premium</h4>
+                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="carousel-slide">
+                            <div class="slide-card" onclick="navigateTo('Barbería')">
+                                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Corte Executive" class="slide-img">
+                                <div class="slide-overlay">
+                                    <span class="slide-category">Barbería</span>
+                                    <h4 class="slide-name">Corte Executive</h4>
+                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="promo-banner">
-                <div class="promo-content">
-                    <i class="fa-solid fa-gift promo-icon"></i>
-                    <p id="promo-text">
-                        <strong>NUESTRA FILOSOFÍA:</strong> El arte del cuidado personal. 
-                        <span class="highlight" id="promo-highlight">15% de cortesía en tu primera cita.</span>
-                    </p>
-                </div>
-            </div>
         </section>
 
         <section id="Barbería" class="page-section">
             <div class="section-header">
-                <button class="btn-back" onclick="navigateTo('Inicio')"><i class="fa-solid fa-arrow-left"></i> Volver</button>
                 <h2>Barbería Executive</h2>
                 <p>Estilo, precisión y vanguardia para el caballero moderno.</p>
             </div>
@@ -82,7 +105,6 @@
 
         <section id="Manicure" class="page-section">
             <div class="section-header">
-                <button class="btn-back" onclick="navigateTo('Inicio')"><i class="fa-solid fa-arrow-left"></i> Volver</button>
                 <h2>Nail Art & Cuidado</h2>
                 <p>Arte, precisión y detalle absoluto en cada diseño de uñas.</p>
             </div>
@@ -91,7 +113,6 @@
 
         <section id="Spa" class="page-section">
             <div class="section-header">
-                <button class="btn-back" onclick="navigateTo('Inicio')"><i class="fa-solid fa-arrow-left"></i> Volver</button>
                 <h2>Spa & Terapias</h2>
                 <p>Desconecta del mundo y renueva tu energía vital con nuestros rituales.</p>
             </div>
@@ -102,12 +123,12 @@
 
     <div id="vt-modal-root"></div>
 
-    <footer>
+    <footer class="luxury-footer">
         <div class="footer-content">
             <div class="logo">
                 <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
             </div>
-            <p>El equilibrio perfecto entre estilo, belleza y relajación.</p>
+            <p>El equilibrio perfecto entre estilo, belleza y bienestar.</p>
             <div class="social-links">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
