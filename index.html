@@ -5,115 +5,437 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Glamour & Confort | Estética Integral</title>
     
+    <!-- Fuentes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- Íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ==========================================================================
+           VARIABLES DE COLORIMETRÍA (Maderas, Dorados, Beiges)
+           ========================================================================== */
+        :root {
+            --madera-oscura: #1A100C;
+            --madera-media: #3E2723;
+            --dorado: #D4AF37;
+            --dorado-oscuro: #AA841B;
+            --beige-claro: #FDFBF7;
+            --beige-oscuro: #EAE0D5;
+            --blanco: #FFFFFF;
+            
+            --cristal-bg: rgba(26, 16, 12, 0.7);
+            --cristal-borde: rgba(212, 175, 55, 0.2);
+            
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Urbanist', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--madera-oscura);
+            color: var(--beige-claro);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           NAVEGACIÓN SUPERIOR ELEGANTE (Fija)
+           ========================================================================== */
+        .luxury-header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(26, 16, 12, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--cristal-borde);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .logo span { color: var(--dorado); font-style: italic; }
+        
+        .elegant-nav { display: flex; gap: 30px; }
+        .nav-link {
+            background: none; border: none;
+            color: var(--beige-oscuro);
+            font-family: var(--font-body);
+            font-size: 1rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--dorado);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--dorado); }
+        .nav-link.active::after { width: 100%; }
+
+        .btn-contact-gold {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--dorado); color: var(--madera-oscura);
+            padding: 10px 24px; border-radius: 30px;
+            text-decoration: none; font-weight: 700; text-transform: uppercase;
+            font-size: 0.9rem; letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-contact-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+
+        /* ==========================================================================
+           ENRUTADOR DE MÓDULOS (SPA)
+           ========================================================================== */
+        .page-section { display: none; padding-top: 80px; animation: fadeIn 0.6s ease; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ==========================================================================
+           HERO CARRUSEL (INICIO)
+           ========================================================================== */
+        .hero-carousel {
+            position: relative; width: 100%; height: 100vh; overflow: hidden;
+            margin-top: -80px; /* Sube debajo del header transparente */
+        }
+        .carousel-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1s ease-in-out;
+            background-size: cover; background-position: center;
+        }
+        .carousel-slide.active { opacity: 1; z-index: 1; }
+        .carousel-slide::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(26,16,12,0.6), rgba(26,16,12,0.9));
+        }
+        .carousel-content {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 2; text-align: center; width: 90%; max-width: 900px;
+        }
+        .carousel-content h1 {
+            font-family: var(--font-title); font-size: clamp(3rem, 6vw, 5.5rem);
+            color: var(--blanco); line-height: 1.1; margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .carousel-content p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--beige-claro);
+            margin-bottom: 40px; font-weight: 300;
+        }
+        .carousel-controls {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            z-index: 2; display: flex; gap: 10px;
+        }
+        .dot {
+            width: 12px; height: 12px; border-radius: 50%; border: 1px solid var(--dorado);
+            background: transparent; cursor: pointer; transition: all 0.3s;
+        }
+        .dot.active { background: var(--dorado); transform: scale(1.3); }
+
+        /* ==========================================================================
+           EL SELLO QUE DISTINGUE (6 PASOS)
+           ========================================================================== */
+        .signature-section { padding: 100px 5%; background: var(--madera-oscura); }
+        .signature-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 50px; align-items: center; }
+        .signature-text { flex: 1; min-width: 300px; }
+        .signature-text h2 { font-family: var(--font-title); font-size: 3rem; color: var(--dorado); margin-bottom: 20px; line-height: 1.1; }
+        .signature-text p { color: var(--beige-oscuro); font-size: 1.1rem; margin-bottom: 30px; font-weight: 300; }
+        
+        .steps-grid { flex: 1.5; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; }
+        .step-item { text-align: center; }
+        .step-number { font-family: var(--font-title); font-size: 1.8rem; color: var(--dorado); border-bottom: 1px solid var(--dorado-oscuro); margin-bottom: 15px; padding-bottom: 5px; }
+        .step-icon {
+            width: 70px; height: 70px; margin: 0 auto 15px;
+            background: var(--cristal-bg); border: 1px solid var(--cristal-borde);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 1.8rem; color: var(--beige-claro); transition: all 0.3s;
+        }
+        .step-item:hover .step-icon { background: var(--dorado); color: var(--madera-oscura); transform: scale(1.1); }
+        .step-item h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blanco); }
+
+        /* ==========================================================================
+           TESTIMONIOS (CARRUSEL SOCIAL)
+           ========================================================================== */
+        .testimonials-section {
+            padding: 80px 5%;
+            background: url('https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            position: relative;
+        }
+        .testimonials-section::before {
+            content: ''; position: absolute; inset: 0; background: rgba(26, 16, 12, 0.85);
+        }
+        .testi-container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .testi-container h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--dorado); margin-bottom: 50px; }
+        
+        .testi-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scroll-snap-type: x mandatory; }
+        .testi-grid::-webkit-scrollbar { height: 8px; }
+        .testi-grid::-webkit-scrollbar-thumb { background: var(--dorado-oscuro); border-radius: 10px; }
+        
+        .testi-card {
+            min-width: 350px; scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid var(--cristal-borde); border-radius: 20px; padding: 25px; text-align: left;
+        }
+        .testi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .testi-name { font-weight: 700; color: var(--blanco); font-size: 1.1rem; }
+        .testi-time { font-size: 0.8rem; color: var(--dorado-oscuro); }
+        .testi-text { font-size: 0.95rem; font-style: italic; color: var(--beige-oscuro); margin-bottom: 20px; line-height: 1.6; }
+        .testi-social { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; color: var(--beige-claro); font-size: 0.9rem; }
+        .testi-social span { display: flex; align-items: center; gap: 8px; cursor: pointer; transition: color 0.2s; }
+        .testi-social span:hover { color: var(--dorado); }
+
+        /* ==========================================================================
+           CABECERAS DE SECCIONES INTERIORES (Barbería, Spa, Uñas)
+           ========================================================================== */
+        .interior-header { text-align: center; margin: 40px auto 60px; max-width: 800px; }
+        .interior-header h2 { font-family: var(--font-title); font-size: 3rem; color: var(--dorado); margin-bottom: 15px; }
+        .interior-header p { font-size: 1.1rem; color: var(--beige-oscuro); }
+
+        /* ==========================================================================
+           GRID DE SERVICIOS (Conectado a JS)
+           ========================================================================== */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 50px; }
+        .menu-card {
+            background: var(--cristal-bg); border: 1px solid var(--cristal-borde);
+            border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;
+            transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .menu-card:hover { transform: translateY(-10px); border-color: var(--dorado); }
+        .menu-img { width: 100%; height: 250px; object-fit: cover; opacity: 0.85; transition: opacity 0.3s; border-bottom: 2px solid var(--dorado-oscuro); }
+        .menu-card:hover .menu-img { opacity: 1; }
+        .menu-info { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+        .menu-title { font-family: var(--font-title); font-size: 1.6rem; color: var(--blanco); margin-bottom: 10px; }
+        .menu-desc { font-size: 0.95rem; color: var(--beige-oscuro); margin-bottom: 20px; flex: 1; }
+        .menu-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; }
+        .menu-price { font-weight: 700; font-size: 1.4rem; color: var(--dorado); }
+        .menu-time { font-size: 0.8rem; background: rgba(212,175,55,0.1); padding: 5px 12px; border-radius: 20px; color: var(--dorado); }
+        
+        .btn-full {
+            display: block; width: 100%; text-align: center; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--dorado); color: var(--dorado); padding: 12px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; text-transform: uppercase; transition: all 0.3s;
+        }
+        .btn-full:hover { background: var(--dorado); color: var(--madera-oscura); }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer { background: #0A0604; border-top: 1px solid var(--dorado-oscuro); padding: 60px 5% 30px; text-align: center; }
+        .footer-logo { font-family: var(--font-title); font-size: 2rem; color: var(--blanco); margin-bottom: 20px; }
+        .footer-logo span { color: var(--dorado); font-style: italic; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border: 1px solid var(--cristal-borde); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dorado); font-size: 1.2rem; text-decoration: none; transition: all 0.3s; }
+        .social-links a:hover { background: var(--dorado); color: var(--madera-oscura); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .elegant-nav { display: none; /* En móviles ocultamos los textos y dejamos los iconos */ }
+            .hero-content h1 { font-size: 2.5rem; }
+            .signature-container { flex-direction: column; }
+        }
+        
+        /* Botones de navegación inferior móvil para compensar si ocultamos el header nav */
+        .mobile-nav {
+            display: none; position: fixed; bottom: 0; width: 100%;
+            background: rgba(10,5,3,0.95); border-top: 1px solid var(--dorado-oscuro);
+            padding: 10px 5px 20px; z-index: 1000;
+        }
+        @media (max-width: 900px) {
+            .mobile-nav { display: flex; justify-content: space-around; }
+            body { padding-bottom: 70px; }
+            .mobile-btn {
+                background: none; border: none; color: var(--beige-oscuro);
+                display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; gap: 5px;
+            }
+            .mobile-btn i { font-size: 1.3rem; }
+            .mobile-btn.active { color: var(--dorado); }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="wood-glass-background"></div>
-
+    <!-- CABECERA -->
     <header class="luxury-header">
-        <div class="header-container">
-            <a href="#" class="logo" onclick="navigateTo('Inicio')">
-                <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
+        <a href="#" class="logo" onclick="navigateTo('Inicio')">
+            <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
+        </a>
+        <nav class="elegant-nav">
+            <button class="nav-link active" onclick="navigateTo('Inicio')">Inicio</button>
+            <button class="nav-link" onclick="navigateTo('Barbería')">Barbería</button>
+            <button class="nav-link" onclick="navigateTo('Manicure')">Manicura</button>
+            <button class="nav-link" onclick="navigateTo('Spa')">Spa & Terapias</button>
+        </nav>
+        <div class="header-actions">
+            <a href="https://wa.me/523348572070" target="_blank" class="btn-contact-gold">
+                <i class="fa-brands fa-whatsapp"></i> Reservar
             </a>
-            
-            <nav class="elegant-nav">
-                <button class="nav-link active" onclick="navigateTo('Inicio')">Inicio</button>
-                <button class="nav-link" onclick="navigateTo('Barbería')">Barbería</button>
-                <button class="nav-link" onclick="navigateTo('Manicure')">Manicura</button>
-                <button class="nav-link" onclick="navigateTo('Spa')">Spa & Terapias</button>
-            </nav>
-
-            <div class="header-actions">
-                <a href="https://wa.me/523348572070" class="btn-contact-gold">
-                    <i class="fa-brands fa-whatsapp"></i> Reservar
-                </a>
-            </div>
         </div>
     </header>
 
     <main class="app-content">
         
-        <section id="Inicio" class="page-section active">
+        <!-- MÓDULO 0: INICIO -->
+        <section id="Inicio" class="page-section active" style="padding-top: 0;">
             
-            <div class="hero-container">
-                <h1 id="home-title" class="hero-title">Estética Integral & <br><span>Relajación Absoluta</span></h1>
-                <p id="home-desc" class="hero-text">
-                    Descubre un santuario diseñado para tu renovación. Combinamos técnicas vanguardistas y atención al detalle para resaltar tu mejor versión.
-                </p>
+            <!-- Hero Carrusel (Imágenes inmersivas completas) -->
+            <div class="hero-carousel" id="homeCarousel">
+                <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1>Bienestar Integral & <br><span>Relajación Absoluta</span></h1>
+                        <p>Descubre un santuario diseñado para tu renovación física y mental.</p>
+                        <a href="https://wa.me/523348572070" target="_blank" class="btn-contact-gold" style="font-size: 1.1rem; padding: 15px 35px;">Agendar Experiencia</a>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1>Barbería <br><span>Executive</span></h1>
+                        <p>Estilo, precisión y vanguardia para el caballero moderno.</p>
+                        <button class="btn-contact-gold" style="font-size: 1.1rem; padding: 15px 35px;" onclick="navigateTo('Barbería')">Ver Servicios</button>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1604654894610-df490651e56c?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1>Nail Art & <br><span>Alta Precisión</span></h1>
+                        <p>El arte del cuidado personal en cada detalle de tus manos.</p>
+                        <button class="btn-contact-gold" style="font-size: 1.1rem; padding: 15px 35px;" onclick="navigateTo('Manicure')">Ver Servicios</button>
+                    </div>
+                </div>
+                <div class="carousel-controls" id="carouselDots">
+                    <div class="dot active" onclick="setSlide(0)"></div>
+                    <div class="dot" onclick="setSlide(1)"></div>
+                    <div class="dot" onclick="setSlide(2)"></div>
+                </div>
             </div>
 
-            <div class="carousel-section">
-                <div class="carousel-header">
-                    <h3 class="carousel-title">Experiencias Destacadas</h3>
-                    <p class="carousel-subtitle">Desliza para explorar</p>
+            <!-- SECCIÓN: EL SELLO QUE DISTINGUE (Los 6 Pasos) -->
+            <section class="signature-section">
+                <div class="signature-container">
+                    <div class="signature-text">
+                        <h2>El sello que distingue a <br>Studio <span>Glamour</span></h2>
+                        <p>Tú eres el protagonista. Personaliza tu terapia de acuerdo a tus preferencias y necesidades para elevar tu estado de bienestar a un nivel superior.</p>
+                        <a href="#" onclick="navigateTo('Spa')" class="btn-contact-gold" style="background: transparent; color: var(--dorado); border: 1px solid var(--dorado);">Explorar Terapias</a>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-icon"><i class="fa-solid fa-palette"></i></div>
+                            <h4>Cromoterapia</h4>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-icon"><i class="fa-solid fa-music"></i></div>
+                            <h4>Musicoterapia</h4>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-icon"><i class="fa-solid fa-pump-soap"></i></div>
+                            <h4>Aromaterapia</h4>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                            <h4>Presión Deseada</h4>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">5</div>
+                            <div class="step-icon"><i class="fa-solid fa-spa"></i></div>
+                            <h4>Textura (Aceites/Cremas)</h4>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">6</div>
+                            <div class="step-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                            <h4>Bebida Relajante</h4>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="carousel-track-container">
-                    <ul class="carousel-track">
-                        <li class="carousel-slide">
-                            <div class="slide-card" onclick="navigateTo('Spa')">
-                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Masoterapia Clínica" class="slide-img">
-                                <div class="slide-overlay">
-                                    <span class="slide-category">Spa Especializado</span>
-                                    <h4 class="slide-name">Masoterapia Clínica</h4>
-                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
-                                </div>
+            </section>
+
+            <!-- SECCIÓN: TESTIMONIOS CARRUSEL SOCIAL -->
+            <section class="testimonials-section">
+                <div class="testi-container">
+                    <h2>Testimonios</h2>
+                    <div class="testi-grid">
+                        <!-- Testimonio 1 -->
+                        <div class="testi-card">
+                            <div class="testi-header">
+                                <span class="testi-name">Alejandro Vargas</span>
+                                <span class="testi-time">Hace 2 horas</span>
                             </div>
-                        </li>
-                        
-                        <li class="carousel-slide">
-                            <div class="slide-card" onclick="navigateTo('Manicure')">
-                                <img src="https://images.unsplash.com/photo-1604654894610-df490651e56c?auto=format&fit=crop&w=800&q=80" alt="Manicura Premium" class="slide-img">
-                                <div class="slide-overlay">
-                                    <span class="slide-category">Nail Art</span>
-                                    <h4 class="slide-name">Manicura Premium</h4>
-                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
-                                </div>
+                            <p class="testi-text">"El corte ejecutivo y el ritual de barba superaron mis expectativas. El nivel de atención y el ambiente te hacen desconectar del estrés del trabajo al instante. Totalmente recomendado."</p>
+                            <div class="testi-social">
+                                <span><i class="fa-regular fa-thumbs-up"></i> 142</span>
+                                <span><i class="fa-regular fa-thumbs-down"></i></span>
+                                <span><i class="fa-regular fa-heart"></i> Responder</span>
                             </div>
-                        </li>
-                        
-                        <li class="carousel-slide">
-                            <div class="slide-card" onclick="navigateTo('Barbería')">
-                                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Corte Executive" class="slide-img">
-                                <div class="slide-overlay">
-                                    <span class="slide-category">Barbería</span>
-                                    <h4 class="slide-name">Corte Executive</h4>
-                                    <span class="slide-action">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
-                                </div>
+                        </div>
+                        <!-- Testimonio 2 -->
+                        <div class="testi-card">
+                            <div class="testi-header">
+                                <span class="testi-name">Sofía Mendoza</span>
+                                <span class="testi-time">Hace 1 día</span>
                             </div>
-                        </li>
-                    </ul>
+                            <p class="testi-text">"Tomé el paquete de Masoterapia Clínica y es un antes y un después para mi espalda. El poder elegir el aroma y la música de la cabina hace que la experiencia sea completamente tuya."</p>
+                            <div class="testi-social">
+                                <span><i class="fa-regular fa-thumbs-up"></i> 208</span>
+                                <span><i class="fa-regular fa-thumbs-down"></i></span>
+                                <span><i class="fa-regular fa-heart"></i> Responder</span>
+                            </div>
+                        </div>
+                        <!-- Testimonio 3 -->
+                        <div class="testi-card">
+                            <div class="testi-header">
+                                <span class="testi-name">Carla Rivera</span>
+                                <span class="testi-time">Hace 3 días</span>
+                            </div>
+                            <p class="testi-text">"El efecto unicornio en mis uñas quedó espectacular. La manicurista es súper detallista y el lugar huele increíble. Me dieron un té riquísimo durante el servicio."</p>
+                            <div class="testi-social">
+                                <span><i class="fa-regular fa-thumbs-up"></i> 89</span>
+                                <span><i class="fa-regular fa-thumbs-down"></i></span>
+                                <span><i class="fa-regular fa-heart"></i> Responder</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
         </section>
 
+        <!-- MÓDULO 1: BARBERÍA -->
         <section id="Barbería" class="page-section">
-            <div class="section-header">
-                <h2>Barbería Executive</h2>
+            <div class="interior-header">
+                <h2>Barbería <span>Executive</span></h2>
                 <p>Estilo, precisión y vanguardia para el caballero moderno.</p>
             </div>
             <div id="grid-Barbería" class="services-grid"></div>
         </section>
 
+        <!-- MÓDULO 2: MANICURE -->
         <section id="Manicure" class="page-section">
-            <div class="section-header">
-                <h2>Nail Art & Cuidado</h2>
-                <p>Arte, precisión y detalle absoluto en cada diseño de uñas.</p>
+            <div class="interior-header">
+                <h2>Nail Art & <span>Cuidado</span></h2>
+                <p>Arte, precisión y detalle absoluto en cada diseño.</p>
             </div>
             <div id="grid-Manicure" class="services-grid"></div>
         </section>
 
+        <!-- MÓDULO 3: SPA -->
         <section id="Spa" class="page-section">
-            <div class="section-header">
-                <h2>Spa & Terapias</h2>
+            <div class="interior-header">
+                <h2>Spa & <span>Terapias</span></h2>
                 <p>Desconecta del mundo y renueva tu energía vital con nuestros rituales.</p>
             </div>
             <div id="grid-Spa" class="services-grid"></div>
@@ -121,21 +443,148 @@
 
     </main>
 
-    <div id="vt-modal-root"></div>
+    <!-- Navegación Inferior (Solo visible en Móviles) -->
+    <nav class="mobile-nav">
+        <button class="mobile-btn active" onclick="navigateTo('Inicio')">
+            <i class="fa-solid fa-house"></i> <span>Inicio</span>
+        </button>
+        <button class="mobile-btn" onclick="navigateTo('Barbería')">
+            <i class="fa-solid fa-scissors"></i> <span>Barbería</span>
+        </button>
+        <button class="mobile-btn" onclick="navigateTo('Manicure')">
+            <i class="fa-solid fa-hand-sparkles"></i> <span>Manicura</span>
+        </button>
+        <button class="mobile-btn" onclick="navigateTo('Spa')">
+            <i class="fa-solid fa-spa"></i> <span>Spa</span>
+        </button>
+    </nav>
 
-    <footer class="luxury-footer">
-        <div class="footer-content">
-            <div class="logo">
-                <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
-            </div>
-            <p>El equilibrio perfecto entre estilo, belleza y bienestar.</p>
-            <div class="social-links">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <i class="fa-solid fa-leaf"></i> Studio <span>Glamour</span>
         </div>
+        <p style="color: var(--beige-oscuro);">El equilibrio perfecto entre estilo, belleza y relajación.</p>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://wa.me/523348572070" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.3);">© 2026 Studio Glamour. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="js/router.js"></script>
+    <!-- ==========================================================================
+         JAVASCRIPT: CARRUSEL, ENRUTAMIENTO Y BASE DE DATOS GOOGLE SHEETS
+         ========================================================================== -->
+    <script>
+        /* 1. Lógica del Carrusel Hero */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let slideInterval;
+
+        function setSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            resetInterval();
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % slides.length;
+            setSlide(next);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+        }
+        resetInterval();
+
+        /* 2. Lógica de Enrutamiento SPA (Navegación) */
+        function navigateTo(sectionId) {
+            // Ocultar secciones
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            // Mostrar la seleccionada
+            const target = document.getElementById(sectionId);
+            if (target) target.classList.add('active');
+
+            // Actualizar botones Desktop
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(sectionId)) btn.classList.add('active');
+            });
+
+            // Actualizar botones Móvil
+            document.querySelectorAll('.mobile-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(sectionId)) btn.classList.add('active');
+            });
+
+            // Subir al top suavemente si no es el home carrusel
+            window.scrollTo(0, 0);
+        }
+
+        /* 3. Lógica Base de Datos (Google Sheets CSV) */
+        const sheetURL = "https://docs.google.com/spreadsheets/d/1f-K29c_rjhmpMhl9-_xjIPK8IWnwlIhGG-cnoQzC2Ow/export?format=csv";
+        const telefonoWhatsApp = "523348572070";
+
+        async function cargarServicios() {
+            try {
+                const respuesta = await fetch(sheetURL);
+                const datosCSV = await respuesta.text();
+                
+                const filas = datosCSV.split('\n').map(fila => fila.trim()).filter(fila => fila !== '');
+                filas.shift(); // Quitar encabezados
+
+                // Limpiar contenedores
+                document.getElementById('grid-Barbería').innerHTML = '';
+                document.getElementById('grid-Manicure').innerHTML = '';
+                document.getElementById('grid-Spa').innerHTML = '';
+
+                filas.forEach(fila => {
+                    const columnas = fila.split(',');
+                    if (columnas.length < 9) return;
+
+                    const categoria = columnas[1];
+                    const servicio = columnas[2];
+                    const descripcion = columnas[3];
+                    const precio = columnas[4];
+                    const tiempo = columnas[5];
+                    const img = columnas[6];
+                    const msg = columnas[7];
+                    const estado = columnas[8];
+
+                    if (estado.toLowerCase() !== 'activo') return;
+
+                    const urlWhatsApp = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(msg)}`;
+
+                    const tarjetaHTML = `
+                        <div class="menu-card">
+                            <img src="${img}" alt="${servicio}" class="menu-img">
+                            <div class="menu-info">
+                                <h3 class="menu-title">${servicio}</h3>
+                                <p class="menu-desc">${descripcion}</p>
+                                <div class="menu-meta">
+                                    <span class="menu-price">$${precio}.00 MXN</span>
+                                    <span class="menu-time"><i class="fa-regular fa-clock"></i> ${tiempo}</span>
+                                </div>
+                                <a href="${urlWhatsApp}" target="_blank" class="btn-full">Reservar ahora</a>
+                            </div>
+                        </div>
+                    `;
+
+                    const contenedor = document.getElementById(`grid-${categoria}`);
+                    if (contenedor) contenedor.innerHTML += tarjetaHTML;
+                });
+            } catch (error) {
+                console.error("Error al conectar con la base de datos:", error);
+            }
+        }
+
+        window.onload = cargarServicios;
+    </script>
 </body>
-</html>
+                </html>
